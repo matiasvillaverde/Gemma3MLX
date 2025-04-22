@@ -5,17 +5,10 @@ public enum Gemma3Error: Error, LocalizedError {
     case modelNotLoaded
     case invalidModelFormat
     case generationFailed
-    
-    public var errorDescription: String? {
-        switch self {
-        case .modelNotLoaded:
-            return "The Gemma3 model is not loaded. Call load(model:) first."
-        case .invalidModelFormat:
-            return "The model files are in an invalid format or corrupted."
-        case .generationFailed:
-            return "Text generation failed. Check the model and inputs."
-        }
-    }
+    case invalidGenerationConfig(reason: String)
+    case imageLoadingFailed
+    case videoLoadingFailed
+    case tokenizationFailed(reason: String)
 }
 
 /// Custom errors for model operations
@@ -35,4 +28,5 @@ enum ModelError: Error, LocalizedError {
     case missingLayerComponent(name: String)
     case missingVisionConfiguration
     case missingProjectorComponent
+    case dimensionMismatch(expected: Int, found: Int)
 }

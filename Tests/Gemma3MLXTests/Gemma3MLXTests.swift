@@ -87,8 +87,8 @@ final class Gemma3MLXTests: XCTestCase {
                     temperature: 0.7
                 )
                 
-                var textStream = client.generateVLM(config: config)
-                
+                let textStream = client.generateVLM(config: config)
+
                 for try await text in textStream {
                     os_log("Generated token: %{public}@", 
                            log: OSLog(subsystem: "com.gemma3.mlx.tests", category: "TextGeneration"),
@@ -131,7 +131,7 @@ final class Gemma3MLXTests: XCTestCase {
         
         Task {
             do {
-                var progressStream = client.load(model: modelURL)
+                let progressStream = client.load(model: modelURL)
                 for try await progress in progressStream {
                     os_log("Loading progress: %{public}f%% - %{public}@", 
                            log: OSLog(subsystem: "com.gemma3.mlx.tests", category: "ImageGeneration"),
@@ -225,7 +225,7 @@ final class Gemma3MLXTests: XCTestCase {
         
         Task {
             do {
-                var progressStream = client.load(model: modelURL)
+                let progressStream = client.load(model: modelURL)
                 for try await progress in progressStream {
                     os_log("Loading progress: %{public}f%% - %{public}@", 
                            log: OSLog(subsystem: "com.gemma3.mlx.tests", category: "ModelLoading"),
